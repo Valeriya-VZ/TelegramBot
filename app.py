@@ -7,7 +7,8 @@ bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start', 'help'])
 def echo_test(message: telebot.types.Message):
-    text = 'Чтобы начать работу введите команду Боту в следующем формате:\n<имя переводимой валюты> \
+    text = 'Привет! Я Бот-Конвертер валют. \n\
+Чтобы начать работу введите команду Боту в следующем формате:\n<имя переводимой валюты> \
 <в какую валюту перевести> \
 <количество переводимой валюты>\n\nУвидеть список всех доступных валют: /values'
     bot.reply_to(message, text)
@@ -27,7 +28,7 @@ def convert(message: telebot.types.Message):
         values = message.text.split(' ')
 
         if len(values) != 3:
-            raise ConvertionException('Неверное количество параметров. /help')
+            raise ConvertionException('Неверное количество параметров. \n/help')
 
         quote, basec, amount = values
         total_base = CryptoConverter.get_price(quote, basec, amount)
